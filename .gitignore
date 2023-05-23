@@ -17,7 +17,7 @@ Icon
 
 *~
 
-
+server/
 ############################
 # Windows
 ############################
@@ -87,14 +87,13 @@ public/uploads/*
 # Node.js
 ############################
 
-lib-cov
-lcov.info
-pids
-logs
-results
-node_modules
-.node_history
-
+server/lib-cov
+server/lcov.info
+server/pids
+server/logs
+server/results
+server/node_modules
+server/.node_history
 ############################
 # Tests
 ############################
@@ -113,3 +112,27 @@ exports
 dist
 build
 .strapi-updater.json
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+client/node_modules
+client/.pnp
+client/.pnp.js
+
+# testing
+client/coverage
+
+# production
+client//build
+
+# misc
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
