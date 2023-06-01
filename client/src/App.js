@@ -24,7 +24,6 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <ScrollToTop />
-        <MainCarousel />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='item/:itemId' element={<ItemDetails />} />
