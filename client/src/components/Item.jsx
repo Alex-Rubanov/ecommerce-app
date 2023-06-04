@@ -18,11 +18,17 @@ const Item = ({ item, width }) => {
   } = useTheme()
 
   const { category, price, name, image } = item.attributes
+  console.log({
+    category,
+    price,
+    name,
+    image
+  })
   const {
     data: {
-      atrributes: {
+      attributes: {
         formats: {
-          medium: { url }
+          small: { url }
         }
       }
     }
@@ -41,7 +47,7 @@ const Item = ({ item, width }) => {
           width='300px'
           height='400px'
           onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', objectFit: 'cover' }}
         />
         <Box
           display={isHovered ? 'block' : 'none'}
@@ -59,9 +65,7 @@ const Item = ({ item, width }) => {
               backgroundColor={shades.neutral[100]}
               borderRadius='3px'
             >
-              <IconButton
-                onClick={() => setCount(Math.max(count => count - 1, 1))}
-              >
+              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
                 <RemoveIcon />
               </IconButton>
               <Typography color={shades.primary[300]}>{count}</Typography>
@@ -74,7 +78,7 @@ const Item = ({ item, width }) => {
             <Button
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
               sx={{
-                backgroundcolor: shades.primary[300],
+                backgroundColor: shades.primary[300],
                 color: 'white'
               }}
             >
@@ -87,11 +91,11 @@ const Item = ({ item, width }) => {
       <Box marginTop='3px'>
         <Typography variant='subtitle2' color={neutral.dark}>
           {category
-            .replace(/([A-Z])/g, ' €1')
+            .replace(/([A-Z])/g, ' $1')
             .replace(/^./, str => str.toUpperCase())}
         </Typography>
         <Typography>{name}</Typography>
-        <Typography fontWeight='bold'>{price}</Typography>
+        <Typography fontWeight='bold'>{price}€</Typography>
       </Box>
     </Box>
   )

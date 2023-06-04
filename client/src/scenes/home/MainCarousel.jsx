@@ -26,6 +26,9 @@ const MainCarousel = () => {
         showThumbs={false}
         showIndicators={false}
         showStatus={false}
+        // autoPlay={true}
+        // interval={3500}
+        // stopOnHover={false}
         renderArrowPrev={onClickHandler => (
           <IconButton
             onClick={onClickHandler}
@@ -67,7 +70,7 @@ const MainCarousel = () => {
               alt={`carousel-img${index}`}
               style={{
                 width: '100%',
-                height: 'calc(100vh - 150px)',
+                height: '750px',
                 objectFit: 'cover',
                 backgroundAttachment: 'fixed'
               }}

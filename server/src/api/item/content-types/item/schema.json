@@ -4,7 +4,8 @@
   "info": {
     "singularName": "item",
     "pluralName": "items",
-    "displayName": "item"
+    "displayName": "item",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,7 +22,16 @@
       "type": "richtext"
     },
     "price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "newArrivals",
+        "bestSellers",
+        "topRated"
+      ]
     },
     "image": {
       "allowedTypes": [
@@ -31,15 +41,8 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false
-    },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "newArrivals",
-        "bestSellers",
-        "topRated"
-      ]
+      "multiple": false,
+      "required": true
     }
   }
 }
