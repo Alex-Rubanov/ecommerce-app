@@ -15,6 +15,18 @@ export const cartSlice = createSlice({
     },
 
     addToCart: (state, action) => {
+      // If item already is in the cart then we don't add duplicate of it but just update it count/amount
+      if (state.cart.some(cart => cart.id === action.payload.item.id)) {
+        state.cart = state.cart.map(cart => {
+          if (cart.id === action.payload.item.id)
+            cart.count += action.payload.item.count
+
+          return cart
+        })
+
+        return
+      }
+
       state.cart = [...state.cart, action.payload.item]
     },
 

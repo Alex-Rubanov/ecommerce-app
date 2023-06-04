@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Box, Typography, Tab, Tabs, useMediaQuery } from '@mui/material'
 import Item from '../../components/Item'
 import { setItems } from '../../state'
-import { categoryFilter } from '../../utils/categoryFilter'
+import { filteredByCategory } from '../../utils/filteredByCategory'
 
 const ShoppingList = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,9 @@ const ShoppingList = () => {
   const handleChange = (event, newValue) => setValue(newValue)
 
   const getItems = async () => {
-    const response = await fetch('http://localhost:1337/api/items?populate=*')
+    const response = await fetch(
+      'http://localhost:1337/api/items?populate=image'
+    )
 
     if (!response.ok) throw Error(response.statusText)
 
@@ -25,8 +27,6 @@ const ShoppingList = () => {
     dispatch(setItems(data))
   }
 
-  // console.log('fn >> ', categoryFilter(items, value))
-
   useEffect(() => {
     getItems()
   }, [])
@@ -34,7 +34,7 @@ const ShoppingList = () => {
   return (
     <Box width='80%' margin='80px auto'>
       <Typography variant='h3' textAlign='center'>
-        Our Featurec <b>Products</b>
+        Our Featured <b>Products</b>
       </Typography>
       <Tabs
         textColor='primary'
@@ -64,7 +64,7 @@ const ShoppingList = () => {
         columnGap='1.33%'
       >
         {items &&
-          categoryFilter(items, value)?.map(item => (
+          filteredByCategory(items, value)?.map(item => (
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
       </Box>

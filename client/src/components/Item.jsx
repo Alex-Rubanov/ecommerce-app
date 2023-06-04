@@ -18,12 +18,6 @@ const Item = ({ item, width }) => {
   } = useTheme()
 
   const { category, price, name, image } = item.attributes
-  console.log({
-    category,
-    price,
-    name,
-    image
-  })
   const {
     data: {
       attributes: {
@@ -88,7 +82,7 @@ const Item = ({ item, width }) => {
         </Box>
       </Box>
 
-      <Box marginTop='3px'>
+      <Box marginTop='3px' padding='0 5px'>
         <Typography variant='subtitle2' color={neutral.dark}>
           {category
             .replace(/([A-Z])/g, ' $1')

@@ -15,6 +15,8 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
 
+  const total = cart.reduce((total, item) => total + item.count, 0)
+
   return (
     <Box
       sx={{
@@ -61,7 +63,7 @@ const Navbar = () => {
             <PersonOutlined />
           </IconButton>
           <Badge
-            badgeContent={cart.length}
+            badgeContent={total}
             color='secondary'
             invisible={cart.length === 0}
             sx={{

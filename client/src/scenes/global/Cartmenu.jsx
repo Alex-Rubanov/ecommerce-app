@@ -16,7 +16,8 @@ import { useNavigate } from 'react-router-dom'
 const FlexBox = styled(Box)`
   display: flex;
   justify-content: space-between;
-  aling-items: center;
+  align-items: center;
+  gap: 10px;
 `
 
 const CartMenu = () => {
@@ -25,8 +26,7 @@ const CartMenu = () => {
   const cart = useSelector(state => state.cart.cart)
   const isCartOpen = useSelector(state => state.cart.isCartOpen)
 
-  console.log(cart)
-
+  const totalAmount = cart.reduce((total, item) => total + item.count, 0)
   const totalPrice = cart.reduce((total, item) => {
     return total + item.count * item.attributes.price
   }, 0)
@@ -55,7 +55,9 @@ const CartMenu = () => {
         <Box padding='30px' overflow='auto' height='100%'>
           {/* {HEADER} */}
           <FlexBox mb='15px'>
-            <Typography variant='h3'>SHOPPING BAG ({cart.length})</Typography>
+            <Typography variant='h3'>
+              SHOPPING BAG (<b>{totalAmount}</b>)
+            </Typography>
             <IconButton onClick={() => dispatch(setIsCartOpen({}))}>
               <CloseIcon />
             </IconButton>
@@ -64,9 +66,12 @@ const CartMenu = () => {
           {/* {CART LIST} */}
           <Box>
             {cart.map(item => (
-              <Box key={`${item.attributes.name}-${item.id}`}>
+              <Box
+                key={`${item.attributes.name}-${item.id}`}
+                position='relative'
+              >
                 <FlexBox p='15px 0'>
-                  <Box flex='1 1 40%'>
+                  <Box flex='1 1 40%' alignSelf='start'>
                     <img
                       src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
                       alt={item?.name}
@@ -118,7 +123,12 @@ const CartMenu = () => {
                   </Box>
 
                   {/* {PRICE} */}
-                  <Typography FontWeight='bold'>
+                  <Typography
+                    fontWeight='bold'
+                    position='absolute'
+                    right='0'
+                    bottom='10%'
+                  >
                     €{item.attributes.price}
                   </Typography>
                 </FlexBox>
