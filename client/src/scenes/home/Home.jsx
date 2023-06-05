@@ -1,3 +1,4 @@
+import Footer from './Footer'
 import MainCarousel from './MainCarousel'
 import ShoppingList from './ShoppingList'
 
@@ -6,6 +7,7 @@ const Home = () => {
     <div className='home'>
       <MainCarousel />
       <ShoppingList />
+      <Footer />
     </div>
   )
 }

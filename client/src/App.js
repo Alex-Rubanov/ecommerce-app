@@ -17,6 +17,8 @@ const ScrollToTop = () => {
   return null
 }
 
+const condition = false
+
 const App = () => {
   return (
     <div className='app'>
