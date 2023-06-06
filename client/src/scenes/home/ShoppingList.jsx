@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Box, Typography, Tab, Tabs, useMediaQuery } from '@mui/material'
 import Item from '../../components/Item'
 import { setItems } from '../../state'
-import { filteredByCategory } from '../../utils/filteredByCategory'
+import { filteredByCategory } from '../../utils/helpers'
 
 const ShoppingList = () => {
   const dispatch = useDispatch()
@@ -16,15 +16,19 @@ const ShoppingList = () => {
   const handleChange = (event, newValue) => setValue(newValue)
 
   const getItems = async () => {
-    const response = await fetch(
-      'http://localhost:1337/api/items?populate=image'
-    )
-
-    if (!response.ok) throw Error(response.statusText)
-
-    const { data } = await response.json()
-
-    dispatch(setItems(data))
+    try {
+      const response = await fetch(
+        'http://localhost:1337/api/items?populate=image'
+      )
+  
+      if (!response.ok) throw Error(response.statusText)
+  
+      const { data } = await response.json()
+  
+      dispatch(setItems(data))
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   useEffect(() => {
