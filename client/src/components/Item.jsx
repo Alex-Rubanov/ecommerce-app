@@ -7,7 +7,7 @@ import { shades } from '../theme'
 import { addToCart } from '../state'
 import { useNavigate } from 'react-router-dom'
 
-const Item = ({ item, width }) => {
+const Item = ({ item, width, imgWidth, imgHeight }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -36,14 +36,21 @@ const Item = ({ item, width }) => {
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
-        <img
-          src={`http://localhost:1337${url}`}
-          alt={item?.name}
-          width='300px'
-          height='400px'
-          onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: 'pointer', objectFit: 'cover' }}
-        />
+        {item && (
+          <img
+            src={`http://localhost:1337${url}`}
+            alt={item?.name}
+            width={imgWidth || '300px'}
+            height={imgHeight || '400px'}
+            onClick={() => navigate(`/item/${item.id}`)}
+            style={{
+              cursor: 'pointer',
+              objectFit: 'cover',
+              borderRadius: '7px',
+              border: 'none'
+            }}
+          />
+        )}
         <Box
           display={isHovered ? 'block' : 'none'}
           position='absolute'
