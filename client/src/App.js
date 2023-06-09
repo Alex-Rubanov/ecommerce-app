@@ -17,8 +17,6 @@ const ScrollToTop = () => {
   return null
 }
 
-console.log(process.env.REACT_APP_BASE_URL)
-
 const App = () => {
   return (
     <div className='app'>

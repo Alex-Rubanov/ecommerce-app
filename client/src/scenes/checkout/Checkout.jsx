@@ -5,11 +5,12 @@ import { useState } from 'react'
 import * as yup from 'yup'
 import { shades } from '../../theme'
 import { initialValues, checkoutSchema } from '../../utils/checkoutValidation'
+import Shipping from './Shipping'
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0)
   const cart = useSelector(state => state.cart.cart)
-  const isFirstStep = Boolean(activeStep)
+  const isFirstStep = Boolean(!activeStep)
   const isSecondStep = Boolean(activeStep)
 
   const handleSubmit = async (value, actions) => {
@@ -40,7 +41,20 @@ const Checkout = () => {
             handleChange,
             handleSubmit,
             setFieldValue
-          }) => <form onSubmit={handleSubmit}></form>}
+          }) => (
+            <form onSubmit={handleSubmit}>
+              {isFirstStep && (
+                <Shipping
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
+                />
+              )}
+            </form>
+          )}
         </Formik>
       </Box>
     </Box>

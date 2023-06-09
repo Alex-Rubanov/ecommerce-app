@@ -12,3 +12,16 @@ body {
 .app {
   margin: auto;
 }
+
+img:not([src]) {
+  visibility: none;
+}
+
+.fadeIn {
+  animation: fade 1s ease;
+}
+
+@keyframes fade {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}

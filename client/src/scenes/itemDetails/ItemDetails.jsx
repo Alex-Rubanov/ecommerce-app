@@ -47,7 +47,6 @@ const ItemDetails = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                border: 'none',
                 width: '100%',
                 height: '100%'
               }}
@@ -56,6 +55,7 @@ const ItemDetails = () => {
             </p>
           ) : (
             <img
+              className='fadeIn'
               src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
               alt={item?.name}
               width='100%'
@@ -63,7 +63,8 @@ const ItemDetails = () => {
               style={{
                 objectFit: 'contain',
                 borderRadius: '7px',
-                border: 'none'
+                borderColor: 'transparent',
+                background: '#fff'
               }}
             />
           )}
