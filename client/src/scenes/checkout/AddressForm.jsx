@@ -1,4 +1,4 @@
-import { useMediaQuery, TextField, Box } from '@mui/material'
+import { Box, useMediaQuery, TextField } from '@mui/material'
 import { getIn } from 'formik'
 
 const AddressForm = ({
@@ -20,6 +20,7 @@ const AddressForm = ({
     )
   const formattedHelper = field =>
     getIn(touched, formattedName(field)) && getIn(errors, formattedName(field))
+
   return (
     <Box
       display='grid'
@@ -83,7 +84,7 @@ const AddressForm = ({
         label='Street Address 2 (optional)'
         onBlur={handleBlur}
         onChange={handleChange}
-        value={values.street1}
+        value={values.street2}
         name={formattedName('street2')}
         error={formattedError('street2')}
         helperText={formattedHelper('street2')}

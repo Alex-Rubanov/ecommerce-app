@@ -9,7 +9,6 @@ const Shipping = ({
   handleChange,
   setFieldValue
 }) => {
-  console.log(values)
   return (
     <Box m='30px auto'>
       {/* {BILLING FORM} */}
@@ -32,7 +31,7 @@ const Shipping = ({
           label='Same for Shipping Address'
           control={
             <Checkbox
-              defaultChecked
+              checked={values.shippingAddress.isSameAddress}
               value={values.shippingAddress.isSameAddress}
               onChange={() =>
                 setFieldValue(
