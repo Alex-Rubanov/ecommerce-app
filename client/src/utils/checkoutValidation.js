@@ -42,32 +42,32 @@ export const checkoutSchema = [
       isSameAddress: yup.boolean(),
       firstName: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       lastName: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       country: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       street1: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       street2: yup.string(),
       city: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       state: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       }),
       zipCode: yup.string().when('isSameAddress', {
         is: isSameAddress => isSameAddress === false,
-        then: yup.string().required('required')
+        then: () => yup.string().required('required')
       })
     })
   }),

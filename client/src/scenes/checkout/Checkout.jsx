@@ -8,7 +8,7 @@ import Shipping from './Shipping'
 import Payment from './Payment'
 import { loadStripe } from '@stripe/stripe-js'
 
-const stripePromise = loadStripe(REACT_APP_STRIPE_TOKEN)
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TOKEN)
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -56,7 +56,7 @@ const Checkout = () => {
       body: JSON.stringify(requestBody)
     })
 
-    if (!response.ok) throw Error(response.status)
+    if (!response.ok) throw Error(response.statusText)
 
     const session = await response.json()
     await stripe.redirectToCheckout({
