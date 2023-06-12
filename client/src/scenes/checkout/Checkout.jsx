@@ -138,7 +138,8 @@ const Checkout = () => {
                     boxShadow: 'none',
                     color: 'white',
                     borderRadius: 0,
-                    padding: '15px 40px'
+                    padding: '15px 40px',
+                    display: activeStep === 3 ? 'none' : ''
                   }}
                 >
                   {isFirstStep ? 'Next' : 'Place Order'}

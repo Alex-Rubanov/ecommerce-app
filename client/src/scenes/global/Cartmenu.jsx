@@ -147,6 +147,7 @@ const CartMenu = () => {
               sx={{
                 backgroundColor: shades.primary[400],
                 color: 'white',
+                display: cart.length ? '' : 'none',
                 borderRadius: 0,
                 minWidth: '100%',
                 padding: '20px 40px',
