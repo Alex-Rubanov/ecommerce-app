@@ -1,21 +1,24 @@
-import { Badge, Box, IconButton } from '@mui/material'
+import { Badge, Box, IconButton, useMediaQuery } from '@mui/material';
 import {
   PersonOutlined,
   ShoppingBagOutlined,
-  MenuOutlined,
-  SearchOutlined
-} from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
-import { shades } from '../../theme'
-import { setIsCartOpen } from '../../state'
-import { useSelector, useDispatch } from 'react-redux'
+  SearchOutlined,
+  FavoriteBorderOutlined,
+} from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { shades } from '../../theme';
+import { setIsCartOpen, setIsWishListOpen } from '../../state';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const cart = useSelector(state => state.cart.cart)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  const isMobile = useMediaQuery('(max-width: 450px)');
 
-  const total = cart.reduce((total, item) => total + item.count, 0)
+  console.log(useSelector((state) => state.cart));
+
+  const total = cart.reduce((total, item) => total + item.count, 0);
 
   return (
     <Box
@@ -29,33 +32,29 @@ const Navbar = () => {
         position: 'fixed',
         top: '0',
         left: '0',
-        zIndex: '1'
-      }}
-    >
+        zIndex: '1',
+      }}>
       <Box
         sx={{
           width: '80%',
           margin: 'auto',
           display: 'flex',
+          alignItems: 'center',
           justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
+        }}>
         <Box
           onClick={() => navigate('/')}
           sx={{
-            '&:hover': { cursor: 'pointer' }
+            '&:hover': { cursor: 'pointer' },
           }}
-          color={shades.secondary[600]}
-        >
+          color={shades.secondary[600]}>
           LuxeMart
         </Box>
         <Box
-          display='flex'
-          justifyContent='space-between'
-          columnGap='20px'
-          zIndex='2'
-        >
+          display="flex"
+          justifyContent={isMobile ? 'flex-end' : 'space-between'}
+          columnGap={isMobile ? '5px' : '20px'}
+          zIndex="2">
           <IconButton sx={{ color: shades.primary[900] }}>
             <SearchOutlined />
           </IconButton>
@@ -64,7 +63,7 @@ const Navbar = () => {
           </IconButton>
           <Badge
             badgeContent={total}
-            color='secondary'
+            color="secondary"
             invisible={cart.length === 0}
             sx={{
               '& .MuiBadge-badge': {
@@ -72,24 +71,24 @@ const Navbar = () => {
                 top: 5,
                 padding: '0 4px',
                 height: '14px',
-                minWidth: '13px'
-              }
-            }}
-          >
+                minWidth: '13px',
+              },
+            }}>
             <IconButton
               onClick={() => dispatch(setIsCartOpen({}))}
-              sx={{ color: shades.primary[900] }}
-            >
+              sx={{ color: shades.primary[900] }}>
               <ShoppingBagOutlined />
             </IconButton>
           </Badge>
-          <IconButton sx={{ color: shades.primary[900] }}>
-            <MenuOutlined />
+          <IconButton
+            onClick={() => dispatch(setIsWishListOpen({}))}
+            sx={{ color: shades.primary[900] }}>
+            <FavoriteBorderOutlined />
           </IconButton>
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

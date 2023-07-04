@@ -1,15 +1,15 @@
-import Footer from './Footer'
-import MainCarousel from './MainCarousel'
-import ShoppingList from './ShoppingList'
+import Footer from './Footer';
+import MainCarousel from './MainCarousel';
+import ShoppingList from './ShoppingList';
 
 const Home = () => {
   return (
-    <div className='home'>
+    <div className="home">
       <MainCarousel />
       <ShoppingList />
-      <Footer />
+      {/* <Footer /> */}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
