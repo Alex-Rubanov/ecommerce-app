@@ -1,23 +1,16 @@
-import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material'
-import AddressForm from './AddressForm'
+import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import AddressForm from './AddressForm';
 
-const Shipping = ({
-  values,
-  errors,
-  touched,
-  handleBlur,
-  handleChange,
-  setFieldValue
-}) => {
+const Shipping = ({ values, errors, touched, handleBlur, handleChange, setFieldValue }) => {
   return (
-    <Box m='30px auto'>
+    <Box m="30px auto">
       {/* {BILLING FORM} */}
       <Box>
-        <Typography mb='15px' fontSize='18px'>
+        <Typography mb="15px" fontSize="18px">
           Billing information
         </Typography>
         <AddressForm
-          type='billingAddress'
+          type="billingAddress"
           values={values.billingAddress}
           errors={errors}
           touched={touched}
@@ -26,9 +19,9 @@ const Shipping = ({
         />
       </Box>
 
-      <Box mb='20px'>
+      <Box mb="20px">
         <FormControlLabel
-          label='Same for Shipping Address'
+          label="Same for Shipping Address"
           control={
             <Checkbox
               checked={values.shippingAddress.isSameAddress}
@@ -36,7 +29,7 @@ const Shipping = ({
               onChange={() =>
                 setFieldValue(
                   'shippingAddress.isSameAddress',
-                  !values.shippingAddress.isSameAddress
+                  !values.shippingAddress.isSameAddress,
                 )
               }
             />
@@ -47,11 +40,11 @@ const Shipping = ({
       {/* {SHIPPING FORM} */}
       {!values.shippingAddress.isSameAddress && (
         <Box>
-          <Typography mb='15px' fontSize='18px'>
+          <Typography mb="15px" fontSize="18px">
             Shipping information
           </Typography>
           <AddressForm
-            type='shippingAddress'
+            type="shippingAddress"
             values={values.shippingAddress}
             errors={errors}
             touched={touched}
@@ -61,7 +54,7 @@ const Shipping = ({
         </Box>
       )}
     </Box>
-  )
-}
+  );
+};
 
-export default Shipping
+export default Shipping;

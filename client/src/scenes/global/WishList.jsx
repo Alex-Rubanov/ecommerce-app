@@ -2,8 +2,9 @@ import { Box, IconButton, Typography, useMediaQuery } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
-import { removeFromWishList, setIsWishListOpen } from '../../state';
 import { useNavigate } from 'react-router-dom';
+
+import { removeFromWishList, setIsWishListOpen } from '../../state';
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -19,13 +20,20 @@ const WishList = () => {
   const isWishListOpen = useSelector((state) => state.cart.isWishListOpen);
   const isMobile = useMediaQuery('(max-width: 450px)');
 
+  const openWishList = (e) => {
+    if (e.currentTarget !== e.target) return;
+
+    dispatch(setIsWishListOpen({}));
+  };
+
+  const redirectOnItemPage = (item) => {
+    dispatch(setIsWishListOpen({}));
+    navigate(`/item/${item?.id}`);
+  };
+
   return (
     <Box
-      onClick={(e) => {
-        if (e.currentTarget !== e.target) return;
-
-        dispatch(setIsWishListOpen({}));
-      }}
+      onClick={openWishList}
       display={isWishListOpen ? 'block' : 'none'}
       backgroundColor="rgba(0, 0, 0, 0.4)"
       sx={{
@@ -64,13 +72,9 @@ const WishList = () => {
               <Box
                 key={`${item.attributes.name}-${item.id}`}
                 position="relative"
-                onClick={() => {
-                  dispatch(setIsWishListOpen({}));
-                  navigate(`/item/${item?.id}`);
-                }}
                 sx={{ cursor: 'pointer' }}>
                 <FlexBox p="15px 0" alignItems="center" justifyContent="start">
-                  <Box alignSelf="start">
+                  <Box alignSelf="start" onClick={() => redirectOnItemPage(item)}>
                     <img
                       src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
                       alt={item?.name}

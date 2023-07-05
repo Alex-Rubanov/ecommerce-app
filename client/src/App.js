@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Home from './scenes/home/Home';
 import ItemDetails from './scenes/ItemDetails/ItemDetails';
 import Confirmation from './scenes/checkout/Confirmation';
@@ -30,6 +30,7 @@ const App = () => {
           <Route path="item/:itemId" element={<ItemDetails />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="checkout/success" element={<Confirmation />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <CartMenu />
         <WishList />

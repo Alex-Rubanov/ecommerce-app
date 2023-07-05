@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, Box, Typography, useTheme, Button, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { shades } from '../theme';
 import { addToCart, addToWishList } from '../state';
-import { useNavigate } from 'react-router-dom';
 
 const Item = ({ item, width, imgWidth, imgHeight }) => {
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ const Item = ({ item, width, imgWidth, imgHeight }) => {
         </Box>
 
         <IconButton
-          onClick={() => dispatch(addToWishList({ item: item }))}
+          onClick={() => dispatch(addToWishList({ item }))}
           sx={{
             position: 'absolute',
             top: '5px',

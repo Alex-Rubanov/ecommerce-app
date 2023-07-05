@@ -10,9 +10,10 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsSearchOpen } from '../../state';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { setIsSearchOpen } from '../../state';
 import useHttp from '../../hooks/useHttp';
 
 const SearchMenu = () => {
@@ -22,17 +23,12 @@ const SearchMenu = () => {
   const items = useSelector((state) => state.cart.items);
   const isMobile = useMediaQuery('(max-width: 450px)');
 
-  console.log(items);
-
   const [value, setValue] = useState('');
   const [foundItems, setFoundItems] = useState([]);
   const { Http } = useHttp();
 
-  const inputRef = useRef(null);
-
   useEffect(() => {
     Http.getItems().then((data) => setFoundItems(data));
-    inputRef.current.focus();
     setValue('');
   }, [isSearchOpen]);
 
@@ -50,13 +46,20 @@ const SearchMenu = () => {
     searchByQuery(value);
   };
 
+  const openSearchMenu = (e) => {
+    if (e.currentTarget !== e.target) return;
+
+    dispatch(setIsSearchOpen({}));
+  };
+
+  const redirectOnItemPage = (item) => {
+    dispatch(setIsSearchOpen({}));
+    navigate(`item/${item.id}`);
+  };
+
   return (
     <Box
-      onClick={(e) => {
-        if (e.currentTarget !== e.target) return;
-
-        dispatch(setIsSearchOpen({}));
-      }}
+      onClick={openSearchMenu}
       display={isSearchOpen ? 'flex' : 'none'}
       sx={{
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -78,7 +81,6 @@ const SearchMenu = () => {
         p="5px 15px"
         position="relative">
         <TextField
-          ref={inputRef}
           value={value}
           onChange={handleChange}
           label="Search"
@@ -112,10 +114,7 @@ const SearchMenu = () => {
             <ListItem
               key={item.id}
               sx={{ gap: '5px', alignItems: 'start', cursor: 'pointer' }}
-              onClick={() => {
-                dispatch(setIsSearchOpen({}));
-                navigate(`item/${item.id}`);
-              }}>
+              onClick={() => redirectOnItemPage(item)}>
               <img
                 src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
                 alt={item?.name}

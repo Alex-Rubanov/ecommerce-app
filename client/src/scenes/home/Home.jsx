@@ -7,7 +7,7 @@ const Home = () => {
     <div className="home">
       <MainCarousel />
       <ShoppingList />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

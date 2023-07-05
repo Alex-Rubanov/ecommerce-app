@@ -1,39 +1,28 @@
-import { Box, useMediaQuery, TextField } from '@mui/material'
-import { getIn } from 'formik'
+import { Box, useMediaQuery, TextField } from '@mui/material';
+import { getIn } from 'formik';
 
-const AddressForm = ({
-  type,
-  values,
-  errors,
-  touched,
-  handleBlur,
-  handleChange
-}) => {
-  const isMobile = useMediaQuery('(max-width: 600px)')
+const AddressForm = ({ type, values, errors, touched, handleBlur, handleChange }) => {
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   //these function used for better coded readability
-  const formattedName = field => `${type}.${field}`
-  const formattedError = field =>
-    Boolean(
-      getIn(touched, formattedName(field)) &&
-        getIn(errors, formattedName(field))
-    )
-  const formattedHelper = field =>
-    getIn(touched, formattedName(field)) && getIn(errors, formattedName(field))
+  const formattedName = (field) => `${type}.${field}`;
+  const formattedError = (field) =>
+    Boolean(getIn(touched, formattedName(field)) && getIn(errors, formattedName(field)));
+  const formattedHelper = (field) =>
+    getIn(touched, formattedName(field)) && getIn(errors, formattedName(field));
 
   return (
     <Box
-      display='grid'
-      gap='15px'
-      gridTemplateColumns='repeat(4, minmax(0, 1fr))'
+      display="grid"
+      gap="15px"
+      gridTemplateColumns="repeat(4, minmax(0, 1fr))"
       sx={{
-        '& > div': { gridColumn: isMobile ? 'span 4' : null }
-      }}
-    >
+        '& > div': { gridColumn: isMobile ? 'span 4' : null },
+      }}>
       <TextField
         fullWidth
-        type='text'
-        label='First Name'
+        type="text"
+        label="First Name"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.firstName}
@@ -44,8 +33,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='Last Name'
+        type="text"
+        label="Last Name"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.lastName}
@@ -56,8 +45,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='Country'
+        type="text"
+        label="Country"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.country}
@@ -68,8 +57,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='Street Address'
+        type="text"
+        label="Street Address"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street1}
@@ -80,8 +69,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='Street Address 2 (optional)'
+        type="text"
+        label="Street Address 2 (optional)"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street2}
@@ -92,8 +81,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='City'
+        type="text"
+        label="City"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.city}
@@ -104,8 +93,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='State'
+        type="text"
+        label="State"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.state}
@@ -116,8 +105,8 @@ const AddressForm = ({
       />
       <TextField
         fullWidth
-        type='text'
-        label='Zip State'
+        type="text"
+        label="Zip State"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.zipCode}
@@ -127,7 +116,7 @@ const AddressForm = ({
         sx={{ gridColumn: '1fr' }}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default AddressForm
+export default AddressForm;

@@ -1,45 +1,24 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Box, Button, Stepper, Step, StepLabel, CircularProgress } from '@mui/material';
 import { Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { shades } from '../../theme';
-import { initialValues, checkoutSchema } from '../../utils/checkoutValidation';
+import { useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { useNavigate } from 'react-router-dom';
+
 import Shipping from './Shipping';
 import Payment from './Payment';
-import { loadStripe } from '@stripe/stripe-js';
-import { addToCart } from '../../state';
-import { useNavigate } from 'react-router-dom';
+import { shades } from '../../theme';
+import { initialValues, checkoutSchema } from '../../utils/checkoutValidation';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TOKEN);
 
 const Checkout = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const cart = useSelector((state) => state.cart.cart);
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
   const isFinalStep = activeStep === 2;
-
-  // useEffect(() => {
-
-  //   if (localStorage.getItem('cart')) {
-  //     const data = JSON.parse(localStorage.getItem('cart'));
-  //     console.log(data);
-
-  //     dispatch(
-  //       addToCart(
-  //         data?.map((item) => {
-  //           const { count } = item;
-
-  //           return { item: { ...item, count } };
-  //         }),
-  //       ),
-  //     );
-  //   }
-  // }, []);
-
-  console.log(cart);
 
   const handleFormSubmit = async (values, actions) => {
     setActiveStep((prev) => prev + 1);
@@ -53,8 +32,10 @@ const Checkout = () => {
     }
 
     if (isSecondStep) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-      makePayment(values);
+      makePayment(values).catch((e) => {
+        alert(e);
+        navigate('/');
+      });
     }
 
     actions.setTouched({});
@@ -77,7 +58,9 @@ const Checkout = () => {
       body: JSON.stringify(requestBody),
     });
 
-    if (!response.ok) throw Error(response.statusText);
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
 
     const session = await response.json();
     await stripe.redirectToCheckout({
@@ -158,7 +141,6 @@ const Checkout = () => {
                       color: 'white',
                       borderRadius: 0,
                       padding: '15px 40px',
-                      // display: activeStep === 3 ? 'none' : '',
                     }}>
                     {isFirstStep ? 'Next' : 'Place Order'}
                   </Button>

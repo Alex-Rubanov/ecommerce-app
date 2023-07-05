@@ -1,5 +1,6 @@
-import { useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { Box, Typography } from '@mui/material';
+
 import { shades } from '../../theme';
 
 const Footer = () => {
@@ -7,17 +8,20 @@ const Footer = () => {
     palette: { neutral },
   } = useTheme();
 
+  const isMobile = useMediaQuery('(max-width: 650px)');
+
   return (
     <Box mt="70px" p="40px 0" backgroundColor={neutral.light}>
       <Box
         width="80%"
         margin="auto"
         display="flex"
+        flexDirection={isMobile ? 'column' : 'row'}
         justifyContent="space-between"
         flexWrap="wrap"
         rowGap="30px"
         columnGap="clamp(20px, 30px,  40px)">
-        <Box width="clamp(20%, 30%,  40%)">
+        <Box width={isMobile ? '100%' : 'clamp(20%, 30%,  40%)'}>
           <Typography vairant="h4" fontWeight="bold" mb="30px" color={shades.secondary[500]}>
             LUXEMART
           </Typography>
@@ -55,7 +59,7 @@ const Footer = () => {
           <Typography mb="30px">Return & Refunds</Typography>
         </Box>
 
-        <Box width="clamp(20%, 25%,  30%)">
+        <Box width={isMobile ? '100%' : 'clamp(20%, 30%,  40%)'}>
           <Typography vairant="h4" fontWeight="bold" mb="30px">
             Contact Us
           </Typography>

@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { IconButton, Box, Typography, Button, Tabs, Tab } from '@mui/material';
+import { IconButton, Box, Typography, Button, Tabs, Tab, CircularProgress } from '@mui/material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { shades } from '../../theme';
-import { addToCart, addToWishList, setIsWishListOpen } from '../../state';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getRandomNumber, redirect } from '../../utils/helpers';
 import { useSelector } from 'react-redux';
+
+import { addToCart, addToWishList } from '../../state';
+import { getRandomNumber, redirect } from '../../utils/helpers';
 import Item from '../../components/Item';
 import useHttp from '../../hooks/useHttp';
+import { shades } from '../../theme';
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const wishList = useSelector((state) => state.cart.wishList);
-  const isWishListOpen = useSelector((state) => state.cart.isWishListOpen);
+
   const { itemId } = useParams();
-  const { isLoading, isError, clearError, Http } = useHttp();
+  const { isLoading, Http } = useHttp();
 
   const [value, setValue] = useState('description');
   const [count, setCount] = useState(1);
@@ -31,10 +32,6 @@ const ItemDetails = () => {
 
   const getItem = async (id) => Http.getItem(id).then(setItem);
   const getItems = async () => Http.getItems().then(setItems);
-
-  if (isWishListOpen) {
-    setIsWishListOpen({});
-  }
 
   useEffect(() => {
     const newIndex = getRandomNumber(0, 16);
@@ -50,16 +47,16 @@ const ItemDetails = () => {
         {/* {IMAGES} */}
         <Box flex="1 1 40%" mb="40px">
           {isLoading ? (
-            <p
-              style={{
+            <Box
+              sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
                 height: '100%',
               }}>
-              Loading...
-            </p>
+              <CircularProgress />
+            </Box>
           ) : (
             <img
               className="fadeIn"

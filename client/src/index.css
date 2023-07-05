@@ -13,6 +13,10 @@ body {
   margin: auto;
 }
 
+.home {
+  overflow: hidden;
+}
+
 img:not([src]) {
   visibility: none;
 }

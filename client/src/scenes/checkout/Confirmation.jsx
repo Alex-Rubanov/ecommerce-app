@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const Confirmation = () => {
   const navigate = useNavigate();
 
-  localStorage.clear();
-
   return (
     <Box m="90px auto" width="80%" height="50vh">
       <Alert severity="success">
@@ -14,7 +12,7 @@ const Confirmation = () => {
         <strong>Congrats on making your purchase</strong>
       </Alert>
       <Button onClick={() => navigate('/')} variant="outlined" sx={{ marginTop: '15px' }}>
-        Go back to Main
+        Go back to Main Page
       </Button>
     </Box>
   );

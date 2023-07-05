@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography, Tab, Tabs, useMediaQuery, CircularProgress } from '@mui/material';
+
 import Item from '../../components/Item';
 import { setItems } from '../../state';
 import { filteredByCategory } from '../../utils/helpers';
@@ -12,8 +13,6 @@ const ShoppingList = () => {
   const items = useSelector((state) => state.cart.items);
   const isMobile = useMediaQuery('(max-width: 600px)');
   const { isLoading, Http } = useHttp();
-
-  console.log('items >> ', items);
 
   const handleChange = (event, newValue) => setValue(newValue);
 
