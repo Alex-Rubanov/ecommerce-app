@@ -1,26 +1,48 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Stepper, Step, StepLabel, CircularProgress } from '@mui/material';
 import { Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { shades } from '../../theme';
 import { initialValues, checkoutSchema } from '../../utils/checkoutValidation';
 import Shipping from './Shipping';
 import Payment from './Payment';
 import { loadStripe } from '@stripe/stripe-js';
+import { addToCart } from '../../state';
+import { useNavigate } from 'react-router-dom';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TOKEN);
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const cart = useSelector((state) => state.cart.cart);
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
   const isFinalStep = activeStep === 2;
 
+  // useEffect(() => {
+
+  //   if (localStorage.getItem('cart')) {
+  //     const data = JSON.parse(localStorage.getItem('cart'));
+  //     console.log(data);
+
+  //     dispatch(
+  //       addToCart(
+  //         data?.map((item) => {
+  //           const { count } = item;
+
+  //           return { item: { ...item, count } };
+  //         }),
+  //       ),
+  //     );
+  //   }
+  // }, []);
+
+  console.log(cart);
+
   const handleFormSubmit = async (values, actions) => {
     setActiveStep((prev) => prev + 1);
-
-    console.log(values);
 
     //copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
@@ -31,6 +53,7 @@ const Checkout = () => {
     }
 
     if (isSecondStep) {
+      localStorage.setItem('cart', JSON.stringify(cart));
       makePayment(values);
     }
 

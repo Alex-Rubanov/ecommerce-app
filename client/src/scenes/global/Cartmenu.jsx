@@ -29,6 +29,11 @@ const CartMenu = () => {
 
   return (
     <Box
+      onClick={(e) => {
+        if (e.currentTarget !== e.target) return;
+
+        dispatch(setIsCartOpen({}));
+      }}
       display={isCartOpen ? 'block' : 'none'}
       backgroundColor="rgba(0, 0, 0, 0.4)"
       position="fixed"

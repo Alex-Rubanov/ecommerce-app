@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isCartOpen: false,
   isWishListOpen: false,
+  isSearchOpen: false,
   wishList: [],
   cart: [],
   items: [],
@@ -75,6 +76,10 @@ export const cartSlice = createSlice({
     setIsWishListOpen: (state) => {
       state.isWishListOpen = !state.isWishListOpen;
     },
+
+    setIsSearchOpen: (state) => {
+      state.isSearchOpen = !state.isSearchOpen;
+    },
   },
 });
 
@@ -86,6 +91,7 @@ export const {
   decreaseCount,
   setIsCartOpen,
   setIsWishListOpen,
+  setIsSearchOpen,
   addToWishList,
   removeFromWishList,
 } = cartSlice.actions;

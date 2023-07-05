@@ -32,11 +32,9 @@ const ItemDetails = () => {
   const getItem = async (id) => Http.getItem(id).then(setItem);
   const getItems = async () => Http.getItems().then(setItems);
 
-  // useEffect(() => {
-  //   if (isWishListOpen) {
-  //     setIsWishListOpen({});
-  //   }
-  // }, []);
+  if (isWishListOpen) {
+    setIsWishListOpen({});
+  }
 
   useEffect(() => {
     const newIndex = getRandomNumber(0, 16);

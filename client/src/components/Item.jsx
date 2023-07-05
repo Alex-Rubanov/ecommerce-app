@@ -98,7 +98,7 @@ const Item = ({ item, width, imgWidth, imgHeight }) => {
             zIndex: 10,
             backgroundColor: shades.neutral[100],
           }}>
-          {wishList.some((i) => i.id === item.id) ? (
+          {wishList.some((current) => current.id === item.id) ? (
             <FavoriteIcon sx={{ color: shades.secondary[400] }} />
           ) : (
             <FavoriteBorderOutlinedIcon />

@@ -7,6 +7,7 @@ import Checkout from './scenes/checkout/Checkout';
 import Navbar from './scenes/global/Navbar';
 import CartMenu from './scenes/global/Cartmenu';
 import WishList from './scenes/global/WishList';
+import SearchMenu from './scenes/global/SearchMenu';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ const App = () => {
         </Routes>
         <CartMenu />
         <WishList />
+        <SearchMenu />
       </BrowserRouter>
     </div>
   );

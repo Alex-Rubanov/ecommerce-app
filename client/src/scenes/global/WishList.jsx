@@ -17,10 +17,15 @@ const WishList = () => {
   const dispatch = useDispatch();
   const wishList = useSelector((state) => state.cart.wishList);
   const isWishListOpen = useSelector((state) => state.cart.isWishListOpen);
-  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobile = useMediaQuery('(max-width: 450px)');
 
   return (
     <Box
+      onClick={(e) => {
+        if (e.currentTarget !== e.target) return;
+
+        dispatch(setIsWishListOpen({}));
+      }}
       display={isWishListOpen ? 'block' : 'none'}
       backgroundColor="rgba(0, 0, 0, 0.4)"
       sx={{
@@ -39,7 +44,7 @@ const WishList = () => {
         position="fixed"
         right="0"
         bottom="0"
-        width={isMobile ? '100%' : '30%'}
+        width={isMobile ? '100%' : 'max(400px, 30%)'}
         oferflow="auto"
         height="100vh"
         backgroundColor="white">
@@ -59,7 +64,10 @@ const WishList = () => {
               <Box
                 key={`${item.attributes.name}-${item.id}`}
                 position="relative"
-                onClick={() => navigate(`/item/${item?.id}`)}
+                onClick={() => {
+                  dispatch(setIsWishListOpen({}));
+                  navigate(`/item/${item?.id}`);
+                }}
                 sx={{ cursor: 'pointer' }}>
                 <FlexBox p="15px 0" alignItems="center" justifyContent="start">
                   <Box alignSelf="start">
