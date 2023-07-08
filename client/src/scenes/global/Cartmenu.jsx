@@ -70,7 +70,7 @@ const CartMenu = () => {
                 <FlexBox p="15px 0">
                   <Box flex="1 1 40%" alignSelf="start">
                     <img
-                      src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+                      src={item?.attributes?.image?.data?.attributes?.formats?.small?.url}
                       alt={item?.name}
                       width="123px"
                       height="164px"

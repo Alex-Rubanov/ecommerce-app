@@ -1,9 +1,17 @@
 import { useSelector } from 'react-redux';
-import { Box, Button, Stepper, Step, StepLabel, CircularProgress } from '@mui/material';
+import {
+  Box,
+  Button,
+  Stepper,
+  Step,
+  StepLabel,
+  CircularProgress,
+  useMediaQuery,
+} from '@mui/material';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 import Shipping from './Shipping';
 import Payment from './Payment';
@@ -19,8 +27,14 @@ const Checkout = () => {
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
   const isFinalStep = activeStep === 2;
+  const isMobile = useMediaQuery('(max-width: 450px)');
 
   const handleFormSubmit = async (values, actions) => {
+    if (cart.length === 0) {
+      alert('Your cart is empty! Add your favorite items first and then continue...');
+      return navigate('/');
+    }
+
     setActiveStep((prev) => prev + 1);
 
     //copies the billing address onto shipping address
@@ -52,7 +66,7 @@ const Checkout = () => {
       })),
     };
 
-    const response = await fetch('http://localhost:1337/api/orders', {
+    const response = await fetch('https://strapi-backend-1447.onrender.com/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
@@ -120,6 +134,9 @@ const Checkout = () => {
                       color: 'white',
                       borderRadius: 0,
                       padding: '15px 40px',
+                      '&.MuiButtonBase-root:hover': {
+                        backgroundColor: isMobile ? 'transparent' : '',
+                      },
                     }}
                     onClick={() => setActiveStep((prev) => prev - 1)}>
                     Back

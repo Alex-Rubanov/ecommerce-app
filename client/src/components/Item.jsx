@@ -96,7 +96,7 @@ const Item = ({ item, width, imgWidth, imgHeight }) => {
             position: 'absolute',
             top: '5px',
             right: '10px',
-            zIndex: 10,
+            zIndex: 5,
             backgroundColor: shades.neutral[100],
           }}>
           {wishList.some((current) => current.id === item.id) ? (

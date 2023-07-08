@@ -41,8 +41,6 @@ const ItemDetails = () => {
     getItems();
   }, [itemId]); //react-hooks/exhaustive-deps
 
-  console.log(items.length, items);
-
   return (
     <Box width="80%" m="80px auto" minHeight="100vh">
       <Box display="flex" flexWrap="wrap" columnGap="40px">
