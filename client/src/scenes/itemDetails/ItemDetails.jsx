@@ -34,12 +34,14 @@ const ItemDetails = () => {
   const getItems = async () => Http.getItems().then(setItems);
 
   useEffect(() => {
-    const newIndex = getRandomNumber(0, 16);
+    const newIndex = getRandomNumber(0, items.length - 5);
 
     setIndex(newIndex);
     getItem(itemId);
     getItems();
   }, [itemId]); //react-hooks/exhaustive-deps
+
+  console.log(items.length, items);
 
   return (
     <Box width="80%" m="80px auto" minHeight="100vh">
@@ -60,7 +62,7 @@ const ItemDetails = () => {
           ) : (
             <img
               className="fadeIn"
-              src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+              src={item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
               alt={item?.name}
               width="100%"
               height="100%"
@@ -85,13 +87,13 @@ const ItemDetails = () => {
             </Box>
             <Box display="flex" alignItems="start" gap="5px">
               <p
-                onClick={() => redirect(-1, itemId, navigate)}
+                onClick={() => redirect(-1, itemId, navigate, items.length)}
                 style={{ margin: '0', cursor: 'pointer' }}>
                 Prev
               </p>
               /
               <p
-                onClick={() => redirect(1, itemId, navigate)}
+                onClick={() => redirect(1, itemId, navigate, items.length)}
                 style={{ margin: '0', cursor: 'pointer' }}>
                 Next
               </p>

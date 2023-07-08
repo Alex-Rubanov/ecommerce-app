@@ -5,6 +5,7 @@ export const filteredByCategory = (array, category) => {
 };
 
 export const getRandomNumber = (min, max) => {
+  if (max < 0) max = 0;
   const range = max - min + 1;
 
   const randomNumber = Math.floor(Math.random() * range) + min;
@@ -12,17 +13,16 @@ export const getRandomNumber = (min, max) => {
   return randomNumber;
 };
 
-export const redirect = (num, id, callback) => {
-  if (id === '20' && num > 0) return;
+export const redirect = (num, id, callback, maxId) => {
+  if (id === maxId && num > 0) return;
   if (id === '1' && num < 0) return;
 
-  const currentId = Number(id);
+  const nextId = Number(id) + num;
+  if (nextId > maxId) return;
 
   if (num > 0) {
-    const newId = currentId + num;
-    return callback(`/item/${newId}`);
+    return callback(`/item/${nextId}`);
   }
 
-  const newId = currentId + num;
-  return callback(`/item/${newId}`);
+  return callback(`/item/${nextId}`);
 };

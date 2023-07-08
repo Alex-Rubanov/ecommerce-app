@@ -42,7 +42,7 @@ const Item = ({ item, width, imgWidth, imgHeight }) => {
         onMouseOut={() => setIsHovered(false)}>
         {item && (
           <img
-            src={`http://localhost:1337${url}`}
+            src={url}
             alt={item?.name}
             width={imgWidth || '300px'}
             height={imgHeight || '400px'}

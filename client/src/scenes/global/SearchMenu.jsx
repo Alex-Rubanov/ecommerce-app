@@ -116,7 +116,7 @@ const SearchMenu = () => {
               sx={{ gap: '5px', alignItems: 'start', cursor: 'pointer' }}
               onClick={() => redirectOnItemPage(item)}>
               <img
-                src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+                src={item?.attributes?.image?.data?.attributes?.formats?.small?.url}
                 alt={item?.name}
                 width="50px"
                 height="70px"
