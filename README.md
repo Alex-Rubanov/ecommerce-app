@@ -1,6 +1,7 @@
 <h1 align="center">Luxemart Ecommerce</h1>
 
-#### ( !important! If you would like to visit website please be aware that it will take some time for server to start. Thanks for your understanding and patience in advance. )
+####  !IMPORTATNT! If you would like to visit website please be aware that it will take some time for server to start. Thanks for your understanding and patience in advance. 
+---
 
 [LUXEMART ECOMMERCE WEB APPLICATION](https://luxemart-ecommerce.vercel.app/).
 
