@@ -3,7 +3,7 @@
 ####  !IMPORTATNT! If you would like to visit website please be aware that it will take some time for server to start. Thanks for your understanding and patience in advance. 
 ---
 
-[LUXEMART ECOMMERCE WEB APPLICATION](https://luxemart-ecommerce.vercel.app/).
+[LUXEMART ECOMMERCE WEB APPLICATION](https://luxemart-ecommerce.vercel.app/)         (Desktop + Mobile version)
 
 This project was created to represent an e-commerce shop for a clothing brand. Here, you can browse and choose your favorite clothes. You can filter clothes by different categories that are currently available. You can add your favorites to your own wishlist or add them directly to your cart if you wish to purchase them. To enhance the user experience (UX), I have also implemented a dynamic search feature that allows you to find more detailed information about selected items on their respective pages. Additionally, we have included other items that are related or similar to your choices, as you may also like them.
 
