@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { setIsSearchOpen } from '../../state';
+import { setIsSearchOpen, setItems } from '../../state';
 import useHttp from '../../hooks/useHttp';
 
 const SearchMenu = () => {
@@ -28,15 +28,24 @@ const SearchMenu = () => {
   const { Http } = useHttp();
 
   useEffect(() => {
-    Http.getItems().then((data) => setFoundItems(data));
+    if (items.length === 0) {
+      Http.getItems()
+        .then((data) => dispatch(setItems(data)))
+        .then(() => setFoundItems(items));
+    }
+
+    setFoundItems(items);
     setValue('');
   }, [isSearchOpen]);
 
   const searchByQuery = (query) => {
-    const foundItems = items?.filter((item) =>
+    if (query === '') return setFoundItems(items);
+
+    const searchResults = foundItems?.filter((item) =>
       item?.attributes?.name?.toLowerCase().includes(query),
     );
-    setFoundItems(foundItems);
+
+    setFoundItems(searchResults);
   };
 
   const handleChange = (e) => {

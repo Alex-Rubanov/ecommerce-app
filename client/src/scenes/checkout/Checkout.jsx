@@ -11,7 +11,7 @@ import {
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Shipping from './Shipping';
 import Payment from './Payment';
@@ -134,9 +134,6 @@ const Checkout = () => {
                       color: 'white',
                       borderRadius: 0,
                       padding: '15px 40px',
-                      '&.MuiButtonBase-root:hover': {
-                        backgroundColor: isMobile ? 'transparent' : '',
-                      },
                     }}
                     onClick={() => setActiveStep((prev) => prev - 1)}>
                     Back

@@ -28,6 +28,8 @@ const MainCarousel = () => {
         autoPlay={true}
         interval={3500}
         stopOnHover={false}
+        preventMovementUntilSwipeScrollTolerance={true}
+        swipeScrollTolerance={50}
         renderArrowPrev={(onClickHandler) => (
           <IconButton
             onClick={onClickHandler}

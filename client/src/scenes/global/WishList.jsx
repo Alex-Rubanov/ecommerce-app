@@ -50,22 +50,22 @@ const WishList = () => {
       {/* {MODAL} */}
       <Box
         position="fixed"
+        top="0"
         right="0"
-        bottom="0"
         width={isMobile ? '100%' : 'max(400px, 30%)'}
         oferflow="auto"
         height="100vh"
         backgroundColor="white">
-        <Box padding="30px" overflow="auto" height="100%">
+        <Box padding="15px" overflow="auto" height="100%">
           {/* {HEADER} */}
-          <FlexBox mb="15px">
+          <Box mb="15px" display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h3" pt="5px">
               YOUR WISHLIST
             </Typography>
-            <IconButton onClick={() => dispatch(setIsWishListOpen({}))}>
-              <CloseIcon />
+            <IconButton size="large" onClick={() => dispatch(setIsWishListOpen({}))}>
+              <CloseIcon fontSize="large" />
             </IconButton>
-          </FlexBox>
+          </Box>
 
           <Box>
             {wishList.map((item) => (

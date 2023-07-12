@@ -5,7 +5,7 @@ import ItemDetails from './scenes/ItemDetails/ItemDetails';
 import Confirmation from './scenes/checkout/Confirmation';
 import Checkout from './scenes/checkout/Checkout';
 import Navbar from './scenes/global/Navbar';
-import CartMenu from './scenes/global/Cartmenu';
+import CartMenu from './scenes/global/CartMenu';
 import WishList from './scenes/global/WishList';
 import SearchMenu from './scenes/global/SearchMenu';
 
