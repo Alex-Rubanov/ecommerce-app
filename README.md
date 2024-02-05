@@ -3,7 +3,7 @@
  
 $${\color{red}Unfortunately \space due \space to \space the \space fact \space that \space database(with \space all \space data)}$$
 
-$${\color{red}was \space uploaded \space with \space some \space rectrictions \space it's \space not \space available \space anymore \space after \space 3 \space months \space 😕}$$
+$${\color{red}was \space uploaded \space with \space some \space restrictions \space it's \space not \space available \space anymore \space after \space 3 \space months \space 😕}$$
 
 
 ####  !IMPORTATNT! If you would like to visit website please be aware that it will take some time for server to start. Thanks for your understanding and patience in advance. 
